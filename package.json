@@ -1,5 +1,5 @@
 {
-  "name": "EELUtility",
+  "name": "EELBuilder",
   "version": "0.0.5",
   "description": "Utility for generating and modifying EELs",
   "author": "Atmosphere IoT Corp.",
@@ -11,6 +11,6 @@
     "walk-sync": "latest"
   },
   "scripts": {
-    "start": "node eelutil.js"
+    "start": "node eelbuilder.js"
   }
 }
