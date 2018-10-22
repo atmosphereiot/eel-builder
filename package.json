@@ -1,0 +1,16 @@
+{
+  "name": "EELUtility",
+  "version": "0.0.5",
+  "description": "Utility for generating and modifying EELs",
+  "author": "Atmosphere IoT Corp.",
+  "url": "https://atmosphereiot.com",
+  "email": "email@atmosphereiot.com",
+  "dependencies": {
+    "mkdirp": "latest",
+    "minimist": "latest",
+    "walk-sync": "latest"
+  },
+  "scripts": {
+    "start": "node eelutil.js"
+  }
+}
