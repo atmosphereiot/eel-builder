@@ -33,20 +33,6 @@ This is intended to be a user editable file. Here's an example:
 	"image": "",
 	"version": "",
 	"eelVersion": "3",
-	"shoppingCartLinks":{
-		"digikey":{
-			"links":{
-				"info":"https://www.digikey.com/product-detail/en/mikroelektronika/MIKROE-1362/1471-1076-ND/4495441"
-			},
-			
-			"cartData":{
-				"part":"1471-1076-ND",
-				"partid":"4495441",
-				"source":"dkstudio",
-				"qty":"1"
-			}
-		}
-	},
 	"requires": [
 		"embedded", "i2c"
 	],
@@ -102,7 +88,7 @@ Any code or file objects should contain _paths_, not values. These paths will be
 
 For each ability, its code file will be assumed to be `[ability name].c` (eg. `readObjectTemperature.c`), unless another file is specified (see the `setup` ability). 
 
-### EEL Fields
+### EEL Top Level Fields
 #### libName
 This is the name of your EEL. It should not have spaces, and is typically all lowercase.
 
@@ -113,7 +99,51 @@ The manufacturer of your sensor. This is optional, but recommended.
 A user friendly description of the sensor and what it does.
 
 #### type
-There are some standard sensor types that Atmosphere uses to group sensors together. 
+There are some standard sensor types that Atmosphere uses to group sensors together. TODO: Options?
+
+#### icon
+A photo of the sensor, can be left blank.
+
+#### image
+A manufacturer image, can be left blank. 
+
+#### version
+An EEL version field. This is not used within the tool at all, so you can place what you'd like here, or nothing at all.
+
+#### eelVersion
+Should always be 3.
+
+#### requires
+A list of features required by the EEL to function properly. Options: adc, spi, i2c, pwm, ble, wifi, gpio, embedded, uart
+
+Typically, the list will be something like `["embedded", "i2c"]`
+
+### Element Fields
+These are fields that are specific to the given element object
+
+#### name
+Name of the element
+
+#### type
+Type of the element. Typically "Embedded" + name
+
+#### icon
+The icon used in the element toolbox. TODO: what about desginer view?
+
+#### defaultAbility
+The default selected ability. This must be populated with one of the element abilities.
+
+#### defaultTrigger
+The default selected trigger. This must be populated with one of the element triggers.
+
+#### hidden
+Sets the element visibility.
+
+#### abilities
+A list of objects specifying the element's abilities. See [Ability Object](#ability-object).
+
+### Ability Object
+
 
 ## Directory Structure
 
