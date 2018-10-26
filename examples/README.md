@@ -5,10 +5,12 @@ Here, you will find example EELS for various different sensors and use cases.
 ### Basic I2C Sensor
 * [IR Thermoclick](ir_thermoclick) - A basic read only I2C sensor designed to be read synchronously
 ### Basic SPI Sensor
-* TODO
+* [LIS3DH Accelerometer](lis3dh) - A basic SPI accelerometer designed to be read asynchronously
 ### Basic GPIO Sensor
-* TODO
+* [Relay Click](relayclick) - A basic GPIO relay controller
 ### Basic PWM Sensor
 * TODO
 ### Sensor With Interrupts
-* TODO
+* [Motion Click](motionclick) - A motion sensing click that sends async events when motion is detected
+### Multiple Protocol Sensor
+* [LPS22HB Environmental Pressure Sensor](lps22hb) - An environmental sensor that has options for both I2C and SPI

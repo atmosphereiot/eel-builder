@@ -1,0 +1,78 @@
+{
+	"libName": "motionclick",
+	"manufacturer": "Mikroelektronika",
+	"description": "PIR500B Motion Sensor mikroBUS™ Click™ Platform Evaluation Expansion Board",
+	"type": "Motion",
+	"icon": "",
+	"image": "",
+	"version": "",
+	"eelVersion": "3",
+	"shoppingCartLinks":{
+		"digikey":{
+			"links":{
+				"info":"https://www.digikey.com/product-detail/en/mikroelektronika/MIKROE-1589/1471-1389-ND/5209651"
+			},
+			
+			"cartData":{
+				"part":"1471-1389-ND",
+				"partid":"5209651",
+				"source":"dkstudio",
+				"qty":"1"
+			}
+		}
+	},
+	"requires": [
+		"embedded", "gpio"
+	],
+	"elements": [
+		{
+			"name": "MotionClick",
+			"type": "EmbeddedMotionClick",
+			"icon": "EmbeddedMotionClick.svg",
+			"defaultAbility":"setup",
+			"defaultTrigger":"motionDetected",
+			"hidden": false,
+			"abilities": [
+				{
+					"name": "setup",
+					"hidden":true
+				},
+				{
+					"name": "detectMotion",
+					"triggers": ["motionDetected"],
+					"hidden": true
+				}
+			],
+			"properties": [
+				{
+					"name": "gpioDriverInstance",
+					"input": "number",
+					"value": 0
+				},
+				{
+					"name": "enablePin",
+					"input": "number",
+					"value": 0
+				},
+				{
+					"name": "motionPin",
+					"input": "number",
+					"value": 0
+				}
+			],
+			"triggers": [],
+			"variables": [
+				],
+			"language": {
+				"en-US": {
+					"EmbeddedMotionClick": "Motion Click",
+					"gpioDriverInstance": "GPIO Driver Instance",
+					"setup": "Setup",
+					"enablePin": "Enable Pin",
+					"motionPin": "Motion Pin",
+					"motionDetected": "Motion Detected"
+				}
+			}
+		}
+	]
+}

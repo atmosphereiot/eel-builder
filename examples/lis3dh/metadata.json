@@ -1,0 +1,105 @@
+{
+	"libName": "lis3dh",
+	"manufacturer": "STMicroelectronics",
+	"description": "",
+	"type": "Accelerometer",
+	"icon": "",
+	"image": "",
+	"version": "",
+	"eelVersion": "3",
+	"shoppingCartLinks":{
+		"digikey":{
+			"links":{
+				"info":"https://www.digikey.com/product-detail/en/adafruit-industries-llc/2809/1528-1516-ND/5774319"
+			},
+			
+			"cartData":{
+				"part":"1528-1516-ND",
+				"partid":"2809",
+				"source":"dkstudio",
+				"qty":"1"
+			}
+		}
+	},
+	"requires": [
+		"embedded",
+		"spi",
+		"fpmath"
+	],
+	"elements": [{
+		"name": "LIS3DHAccelerometer",
+		"type": "EmbeddedLIS3DH",
+		"icon": "EmbeddedAccelerometerMagnetometer.svg",
+		"defaultAbility": "readZAcceleration",
+		"defaultTrigger": "zAccelerationRead",
+		"hidden": false,
+		"abilities": [{
+				"name": "setup",
+				"hidden":true
+			},
+			{
+				"name": "readAcceleration",
+				"triggers": ["accelerationRead"]
+			},
+			{
+				"name": "readXAcceleration",
+				"triggers": ["xAccelerationRead"]
+			},
+			{
+				"name": "readYAcceleration",
+				"triggers": ["yAccelerationRead"]
+			},
+			{
+				"name": "readZAcceleration",
+				"triggers": ["zAccelerationRead"]
+			},
+			{
+				"name": "readRawXAcceleration",
+				"triggers": ["rawXAccelerationRead"]
+			},
+			{
+				"name": "readRawYAcceleration",
+				"triggers": ["rawYAccelerationRead"]
+			},
+			{
+				"name": "readRawZAcceleration",
+				"triggers": ["rawZAccelerationRead"]
+			}
+		],
+		"properties": [{
+				"name": "spiInstance",
+				"input": "number",
+				"value": "0"
+			},
+
+			{
+				"name": "csPin",
+				"input": "number",
+				"value": "D2"
+			}
+		],
+		"triggers": [],
+		"variables": [],
+		"language": {
+			"en-US": {
+			"EmbeddedLIS3DH": "ST LIS3DH",
+			"spiInstance": "SPI Driver Instance",
+			"csPin": "Chip Select Pin",
+			"readXAcceleration": "Read X Acceleration",
+			"readYAcceleration": "Read Y Acceleration",
+			"readZAcceleration": "Read Z Acceleration",
+			"readRawXAcceleration": "Read Raw X Acceleration",
+			"readRawYAcceleration": "Read Raw Y Acceleration",
+			"readRawZAcceleration": "Read Raw Z Acceleration",
+			"xAccelerationRead":"X Acceleration Read",
+			"yAccelerationRead":"Y Acceleration Read",
+			"zAccelerationRead":"Z Acceleration Read",
+			"rawXAccelerationRead":"Raw X Acceleration Read",
+			"rawYAccelerationRead":"Raw Y Acceleration Read",
+			"rawZAccelerationRead":"Raw Z Acceleration Read",
+			"readAcceleration": "Read Acceleration",
+			"accelerationRead": "Acceleration Read"
+			}
+		}
+	}]
+}

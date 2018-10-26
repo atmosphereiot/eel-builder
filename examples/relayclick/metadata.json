@@ -1,0 +1,122 @@
+{
+	"libName": "relayclick",
+	"manufacturer": "Mikroelektronika",
+	"description": " G6D-1A-ASI DC5 - Series Evaluation Board",
+	"type": "Relay Board",
+	"icon": "",
+	"image": "",
+	"version": "",
+	"eelVersion": "3",
+	"shoppingCartLinks":{
+		"digikey":{
+			"links":{
+				"info":"https://www.digikey.com/product-detail/en/mikroelektronika/MIKROE-1370/1471-1080-ND/4495445"
+			},
+			
+			"cartData":{
+				"part":"1471-1080-ND",
+				"partid":"4495445",
+				"source":"dkstudio",
+				"qty":"1"
+			}
+		}
+	},
+	"requires": [
+		"embedded", "gpio"
+	],
+	"elements": [
+		{
+			"name": "RelayClick",
+			"type": "EmbeddedRelayClick",
+			"icon": "EmbeddedRelayClick.svg",
+			"defaultAbility":"setRelay1On",
+			"defaultTrigger":"relay1SetOn",
+			"hidden": false,
+			"abilities": [
+				{
+					"name": "setup",
+					"hidden":true
+				},
+				{
+					"name": "setRelay1On",
+					"triggers": ["relay1SetOn"]
+				},
+				{
+					"name": "setRelay2On",
+					"triggers": ["relay2SetOn"]
+				},
+				{
+					"name": "setRelay1Off",
+					"triggers": ["relay1SetOff"]
+				},
+				{
+					"name": "setRelay2Off",
+					"triggers": ["relay2SetOff"]
+				},
+				{
+					"name": "toggleRelay1",
+					"triggers": ["relay1Toggled"]
+				},
+				{
+					"name": "toggleRelay2",
+					"triggers": ["relay2Toggled"]
+				},
+				{
+					"name": "setBothRelaysOn",
+					"triggers": ["relay1SetOn", "relay2SetOn", "bothRelaysSetOn"]
+				},
+				{
+					"name": "setBothRelaysOff",
+					"triggers": ["relay1SetOff", "relay2SetOff", "bothRelaysSetOff"]
+				},
+				{
+					"name": "toggleBothRelays",
+					"triggers": ["bothRelaysToggled"]
+				}
+				
+			],
+			"properties": [
+				{
+					"name": "gpioDriverInstance",
+					"input": "number",
+					"value": 0
+				},
+				{
+					"name": "relay1Pin",
+					"input": "number",
+					"value": 0
+				},
+				{
+					"name": "relay2Pin",
+					"input": "number",
+					"value": 0
+				}
+			],
+			"triggers": [],
+			"variables": [
+					{
+						"name": "handle", 
+						"type": "ATMO_DriverInstanceHandle_t"
+					}
+				],
+			"language": {
+				"en-US": {
+					"EmbeddedRelayClick": "Relay Click",
+					"gpioDriverInstance": "GPIO Driver Instance",
+					"relay1Pin": "Relay 1 GPIO Pin",
+					"relay2Pin": "Relay 2 GPIO Pin",
+					"setup": "Setup",
+					"setRelay1On": "Set Relay 1 On",
+					"setRelay1Off": "Set Relay 1 Off",
+					"setRelay2On": "Set Relay 2 On",
+					"setRelay2Off": "Set Relay 2 Off",
+					"toggleRelay1": "Toggle Relay 1",
+					"toggleRelay2": "Toggle Relay 2",
+					"setBothRelaysOn": "Set Both Relays On",
+					"setBothRelaysOff": "Set Both Relays Off",
+					"toggleBothRelays": "Toggle Both Relays"
+				}
+			}
+		}
+	]
+}

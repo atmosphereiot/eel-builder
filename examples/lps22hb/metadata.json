@@ -1,0 +1,110 @@
+{
+	"libName": "lps22hb",
+	"manufacturer": "STMicroelectronics",
+	"description": "The LPS22HB is an ultra-compact piezoresistive absolute pressure sensor which functions as a digital output barometer. The device comprises a sensing element and an IC interface which communicates through I2C or SPI from the sensing element to the application.",
+	"type": "Pressure",
+	"icon": "",
+	"image": "",
+	"version": "",
+	"eelVersion": "3",
+	"shoppingCartLinks":{
+		"digikey":{
+			"links":{
+				"info":"https://www.digikey.com/product-detail/en/stmicroelectronics/STEVAL-MET001V1/497-16372-ND/5873438"
+			},
+			
+			"cartData":{
+				"part":"497-16372-ND",
+				"partid":"5873438",
+				"source":"dkstudio",
+				"qty":"1"
+			}
+		}
+	},
+	"requires": [
+		"embedded",
+		"fpmath",
+		"i2c"
+	],
+	"elements": [{
+		"name": "LPS22HBPressure",
+		"type": "EmbeddedLPS22HB",
+		"icon": "EmbeddedPressure.svg",
+		"defaultAbility": "readPressure",
+		"defaultTrigger": "pressureRead",
+		"hidden": false,
+		"abilities": [{
+				"name": "setup",
+				"hidden":true
+			},
+			{
+				"name": "readPressure",
+				"triggers": ["pressureRead"]
+			},
+			{
+				"name": "readTemperature",
+				"triggers": ["temperatureRead"]
+			}
+		],
+		"properties": [
+			{
+				"name": "communicationMode",
+				"input":"select",
+				"inputOptions":["ATMO_DRIVERTYPE_SPI", "ATMO_DRIVERTYPE_I2C"],
+				"value": "ATMO_DRIVERTYPE_SPI"
+      		},
+			{
+				"name": "i2cInstance",
+				"input": "number",
+				"value": "0"
+			},
+			{
+				"name": "spiInstance",
+				"input": "number",
+				"value": "0"
+			},
+			{
+				"name": "gpioInstance",
+				"input": "number",
+				"value": "0"
+			},
+			{
+				"name": "csPin",
+				"input": "number",
+				"value": "0"
+			},
+			{
+				"name": "spi3Wire",
+				"input": "checkbox",
+				"value": true
+			},
+			{
+				"name": "i2cAddress",
+				"input": "select",
+				"inputOptions":["0x5D","0x5C"],
+				"value": "0x5D"
+			}
+		],
+		"triggers": [],
+		"variables": [],
+		"language": {
+			"en-US": {
+				"EmbeddedLPS22HB": "LPS22HB",
+				"i2cInstance": "I2C Driver Instance",
+				"i2cAddress": "I2C Address",
+				"setup": "Setup",
+				"readTemperature":"Read Temperature",
+				"temperatureRead":"Temperature Read",
+				"readPressure":"Read Pressure",
+				"pressureRead":"Pressure Read",
+				"communicationMode": "Communication Mode",
+				"ATMO_DRIVERTYPE_SPI": "SPI",
+				"ATMO_DRIVERTYPE_I2C": "I2C",
+				"spiInstance": "SPI Driver Instance",
+				"gpioInstance": "GPIO Driver Instance",
+				"spi3Wire": "3 Wire SPI Mode",
+				"csPin": "Chip Select Pin"
+			}
+		}
+	}]
+}
