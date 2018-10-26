@@ -149,7 +149,7 @@ A list of objects specifying the element's properties. See [Property Object](#pr
 A list of triggers not associated with any specific abilities. Typically empty.
 
 #### variables
-A list of variables and their types, used to store element state. See [Relay Click](examples/relayclick) for an example of usage. 
+A list of variables and their types, used to store element state. See [Relay Click](examples/relayclick/metadata.json) for an example of usage. 
 
 #### language
 An object containing the language encoding for the object. This specifies how abilities and names should be printed on the screen in various languages. See [Language Object](#language-object).
@@ -177,7 +177,7 @@ The type of the property. Can be number, text, select, checkbox
 The default value of the property.
 
 #### inputOptions
-A list of available options, only used if the input type is `select`. See [LPS22HB](examples/lps22hb) for an example.
+A list of available options, only used if the input type is `select`. See [LPS22HB](examples/lps22hb/metadata.json) for an example.
 
 ### Language Object
 The top level keys of the language object are the [language tags](https://tools.ietf.org/html/rfc4646). Each language tag contains an object specifying keys and values translating names in the EEL metadata to pretty names to be printed on the Atmosphere GUI. Anything the EEL metadata that will be printed on the GUI should have an associated translation in the language object. If a translation is not provided, the raw value will be used.
