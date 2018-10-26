@@ -142,8 +142,45 @@ Sets the element visibility.
 #### abilities
 A list of objects specifying the element's abilities. See [Ability Object](#ability-object).
 
+#### properties
+A list of objects specifying the element's properties. See [Property Object](#property-object).
+
+#### triggers
+A list of triggers not associated with any specific abilities. Typically empty.
+
+#### variables
+A list of variables and their types, used to store element state. See [Relay Click](examples/relayclick) for an example of usage. 
+
+#### language
+An object containing the language encoding for the object. This specifies how abilities and names should be printed on the screen in various languages. See [Language Object](#language-object).
+
 ### Ability Object
 
+#### name
+The name of the ability. Should not have spaces.
+
+#### hidden
+Specifies the visibility of the ability in the ability list. The setup ability, for example, is hidden since it should never be manually called by a user. Abilities created only as a means to access their triggers (eg. async abilities executed on interrupts) should be hidden as well.
+
+#### triggers
+A list of string trigger names. Typically the list will only have one trigger, but you can have multiple. 
+
+### Property Object
+
+#### name
+The name of the property. Should not have spaces.
+
+#### input
+The type of the property. Can be number, text, select, checkbox
+
+#### value
+The default value of the property.
+
+#### inputOptions
+A list of available options, only used if the input type is `select`. See [LPS22HB](examples/lps22hb) for an example.
+
+### Language Object
+The top level keys of the language object are the [language tags](https://tools.ietf.org/html/rfc4646). Each language tag contains an object specifying keys and values translating names in the EEL metadata to pretty names to be printed on the Atmosphere GUI. Anything the EEL metadata that will be printed on the GUI should have an associated translation in the language object. If a translation is not provided, the raw value will be used.
 
 ## Directory Structure
 
