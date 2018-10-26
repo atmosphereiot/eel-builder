@@ -8,6 +8,9 @@ Run `node eelutil.js --new --name="tmp102" --dir="/home/nick"` to generate a bar
 
 Once you have this directory created and you've customized the metadata file and written all of your code, you can run `node eelutil.js --generate --dir="/home/nick/tmp102_EEL"` to generate the .eel file.
 
+### Building Example EELS
+Run `./build_examples.sh` to build all of the example EELs.
+
 ## Building Process
 Building an eel happens in three steps
 
