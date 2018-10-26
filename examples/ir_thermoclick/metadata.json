@@ -1,0 +1,72 @@
+{
+	"libName": "irthermoclick",
+	"manufacturer": "Mikroelektronika",
+	"description": "MLX90614ESF-AAA Temperature Sensor mikroBUS™ Click™ Platform Evaluation Expansion Board",
+	"type": "Temperature Sensor",
+	"icon": "",
+	"image": "",
+	"version": "",
+	"eelVersion": "3",
+	"shoppingCartLinks":{
+		"digikey":{
+			"links":{
+				"info":"https://www.digikey.com/product-detail/en/mikroelektronika/MIKROE-1362/1471-1076-ND/4495441"
+			},
+			
+			"cartData":{
+				"part":"1471-1076-ND",
+				"partid":"4495441",
+				"source":"dkstudio",
+				"qty":"1"
+			}
+		}
+	},
+	"requires": [
+		"embedded", "i2c"
+	],
+	"elements": [
+		{
+			"name": "IRThermoClick",
+			"type": "EmbeddedIRThermoClick",
+			"icon": "EmbeddedTempHumidity.svg",
+			"defaultAbility": "readTemperature",
+			"defaultTrigger": "temperatureRead",
+			"hidden": false,
+			"abilities": [
+				{
+					"name": "setup",
+				"hidden":true
+				},
+				{
+					"name": "readTemperature",
+					"triggers": ["temperatureRead"]
+				}
+			],
+			"properties":[
+				{
+					"name":"i2cInstance",
+					"input":"number",
+					"value":"ATMO_DEFAULT_I2C"
+				},
+				
+				{
+					"name":"i2cAddress",
+					"input":"number",
+					"value":"0x5A"
+				}
+			],
+			"triggers": [],
+			"variables": [],
+			"language": {
+				"en-US": {
+					"EmbeddedIRThermoClick": "IRThermo Click",
+					"i2cInstance": "I2C Driver Instance",
+					"i2cAddress": "I2C Address",
+					"readTemperature": "Read Temperature",
+					"temperatureRead": "Temperature Read",
+					"setup": "Setup"
+				}
+			}
+		}
+	]
+}
