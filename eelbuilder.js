@@ -3,6 +3,8 @@ const minimist = require('minimist');
 const fs = require('fs');
 const walksync = require('walk-sync');
 const crypto = require('crypto');
+const os = require('os');
+var path = require('path');
 
 var args = minimist(process.argv.slice(2), {  
     string: ['name','dir','dest'],
@@ -15,14 +17,34 @@ if( args.help || process.argv.length === 2) {
 	console.log("---------------------");
 	console.log("--new: Generate a new bare-bones EEL directory");
 	console.log("--name: Set EEL name. Used in conjunction with --new");
-	console.log("--generate: Generate an EEL");
-	console.log("--dir: Specify EEL project directory. Used in conjunction with --generate or --new.");
-	console.log("--dest: Specify location to put generated EEL");
+	console.log("--generate: Generate an EEL from an EEL directory");
+	console.log("--dir: Specify EEL project source directory. Used in conjunction with --generate or --new.");
+	console.log("--dest: Specify location to put generated EEL file");
 	console.log("\nTypical Usage");
 	console.log("---------------------");
 	console.log("node eelutil.js --new --name=\"tmp102\" --dir=\"~\" -> Generates a new project structure in user's home directory");
 	console.log("node eelutil.js --generate --dir=\"~/TMP102_EEL\" -> Generates new EEL file from project located in ~/TMP102_EEL");
 	return;
+}
+
+function loadConfig() {
+	// Look in these locations, in order, for a configuration file
+	var configFileLocations = [
+		path.join(os.homedir(), '/.atmosphereiot/eel-builder.conf'),
+		path.join(os.homedir(), '/eel-builder.conf'),
+		path.join(__dirname, '/eel-builder.conf'),
+	];
+
+	for(var i = 0; i < configFileLocations.length; ++i) {
+		console.log("Checking location: " + configFileLocations[i]);
+		if(fs.existsSync(configFileLocations[i])) {
+			var configFileData = fs.readFileSync(configFileLocations[i]);
+			return JSON.parse(configFileData);
+		}
+	}
+
+	// Didn't find anything
+	return {};
 }
 
 function getSafeEelName(friendlyName) {
@@ -63,7 +85,10 @@ function writeMetaData(dirName, eelName) {
 	fs.writeFileSync(dirName + '/metadata.json', JSON.stringify(metaData, null, 2));
 }
 
-function generate(eelDir) {
+function generate(eelDir, eelDest) {
+
+	mkdirp.sync(eelDest);
+
 	try {
 		var metadata = JSON.parse(fs.readFileSync(eelDir + '/metadata.json','utf8'));
 	} catch (error) {
@@ -129,12 +154,6 @@ function generate(eelDir) {
 		curPath[fileName] = fs.readFileSync(eelDir + '/files/' + file, 'utf8');
 	});
 
-	if( args.dest ) {
-		var eelDest = args.dest;
-	} else {
-		var eelDest = eelDir;
-	}
-
 	var eelJSONWithoutMD5 = JSON.stringify(metadata, null, 2);
 	
 	var eelMD5 = crypto.createHash('md5').update(eelJSONWithoutMD5).digest("hex");
@@ -156,17 +175,55 @@ function generate(eelDir) {
 	fs.writeFileSync(eelDest + '/' + getSafeEelName(metadata.libName) + '.eel', eelJSONWithMD5);
 }
 
-if( args.generate && args.dir ) {
-	generate(args.dir);
-}
-
-
-if( args.new && args.name ) {
+function getEelDirName(eelName) {
 	var safeName = getSafeEelName(args.name);
 	var dirName = safeName + '_EEL';
+	return dirName;
+}
 
-	if( args.dir ) {
-		dirName = args.dir + '/' + dirName;
+var config = loadConfig();
+
+var dir = args.dir || config.eelSourceDir;
+var dest = args.dest || config.eelFileDir || dir;
+
+if( args.generate ) {
+
+	if(!dir) {
+		console.log("Error: You must enter a directory via --dir or a configuration file.");
+		return;
+	}
+
+	if(!dest) {
+		console.log("Error: You must enter a directory via --dest or a configuration file.");
+		return;
+	}
+
+	if(!fs.existsSync(path.join(dir, 'metadata.json'))) {
+		if(!args.name) {
+			console.log("metadata.json not found at " + dir + ", please specify full directory via --dir or EEL name with --name");
+			return;
+		}
+
+		var dirName = getEelDirName(args.name);
+		var possibleDir = path.join(dir, dirName);
+
+		if(!fs.existsSync(possibleDir)) {
+			console.log("metadata.json not found at " + possibleDir + ", please specify full directory via --dir or EEL name with --name");
+			return;
+		}
+	}
+
+	generate(possibleDir, dest);
+}
+
+if( args.new && args.name ) {
+	var dirName = getEelDirName(args.name);
+
+	if( dir ) {
+		dirName = dir + '/' + dirName;
+	} else {
+		console.log("Error: You must enter a directory via --dir or a configuration file.");
+		return;
 	}
 
 	console.log("Generating project in " + dirName);
