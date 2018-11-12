@@ -8,7 +8,7 @@ var path = require('path');
 
 var args = minimist(process.argv.slice(2), {  
     string: ['name','dir','dest'],
-    boolean: ['new', 'help', 'generate', 'refresh'],
+    boolean: ['new', 'help', 'generate', 'refresh', 'verbose'],
     alias: {'h' :'help'},
 });
 
@@ -20,6 +20,7 @@ if( args.help || process.argv.length === 2) {
 	console.log("--generate: Generate an EEL from an EEL directory");
 	console.log("--dir: Specify EEL project source directory. Used in conjunction with --generate or --new.");
 	console.log("--dest: Specify location to put generated EEL file");
+	console.log("--verbose: Provide verbose output");
 	console.log("\nTypical Usage");
 	console.log("---------------------");
 	console.log("node eelutil.js --new --name=\"tmp102\" --dir=\"~\" -> Generates a new project structure in user's home directory");
@@ -36,8 +37,10 @@ function loadConfig() {
 	];
 
 	for(var i = 0; i < configFileLocations.length; ++i) {
-		console.log("Checking location: " + configFileLocations[i]);
 		if(fs.existsSync(configFileLocations[i])) {
+			if(args.verbose) {
+				console.log("Found config file at: " + configFileLocations[i]);
+			}
 			var configFileData = fs.readFileSync(configFileLocations[i]);
 			return JSON.parse(configFileData);
 		}
@@ -170,9 +173,11 @@ function generate(eelDir, eelDest) {
 		console.error('FAILED TO CONFIRM MD5 for EEL!');
 	}
 
-	console.log("Writing EEL to " + eelDest);
+	var eelFileName = path.join(eelDest, getSafeEelName(metadata.libName) + ".eel");
+
+	console.log("Writing EEL to " + eelFileName);
 	
-	fs.writeFileSync(eelDest + '/' + getSafeEelName(metadata.libName) + '.eel', eelJSONWithMD5);
+	fs.writeFileSync(eelFileName, eelJSONWithMD5);
 }
 
 function getEelDirName(eelName) {
@@ -182,6 +187,12 @@ function getEelDirName(eelName) {
 }
 
 var config = loadConfig();
+
+if(args.verbose) {
+	if(config) {
+		console.log(JSON.stringify(config, null, 2));
+	}
+}
 
 var dir = args.dir || config.eelSourceDir;
 var dest = args.dest || config.eelFileDir || dir;
@@ -198,7 +209,13 @@ if( args.generate ) {
 		return;
 	}
 
+	// If the user is using a configuration file
+	// They don't need to supply --dir and --dest arguments
+	// They can just supply --name and the tool will find the directory
 	if(!fs.existsSync(path.join(dir, 'metadata.json'))) {
+		if(args.verbose) {
+			console.log(`metadata.json not found in ${path.join(dir, 'metadata.json')}`);
+		}
 		if(!args.name) {
 			console.log("metadata.json not found at " + dir + ", please specify full directory via --dir or EEL name with --name");
 			return;
@@ -207,13 +224,19 @@ if( args.generate ) {
 		var dirName = getEelDirName(args.name);
 		var possibleDir = path.join(dir, dirName);
 
+		if(args.verbose) {
+			console.log(`Trying ${possibleDir}`);
+		}
+
 		if(!fs.existsSync(possibleDir)) {
 			console.log("metadata.json not found at " + possibleDir + ", please specify full directory via --dir or EEL name with --name");
 			return;
 		}
-	}
 
-	generate(possibleDir, dest);
+		generate(possibleDir, dest);
+	} else {
+		generate(dir, dest);
+	}
 }
 
 if( args.new && args.name ) {
