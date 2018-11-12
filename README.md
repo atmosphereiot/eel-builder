@@ -6,7 +6,46 @@ This is designed to be a simple command line utility to help developers generate
 
 Run `node eelutil.js --new --name="tmp102" --dir="/home/nick"` to generate a bare-bones directory containing an eel metadata.json file and empty directories for files and elements. 
 
-Once you have this directory created and you've customized the metadata file and written all of your code, you can run `node eelutil.js --generate --dir="/home/nick/tmp102_EEL"` to generate the .eel file.
+Once you have this directory created and you've customized the metadata file and written all of your code, you can run `node eelutil.js --generate --dir="/home/nick/tmp102_EEL" --dest="/home/nick/` to generate the .eel file, which will be located at `/home/nick/tmp102.eel`.
+
+## Config File
+This tool accepts an optional configuration file named `eel-builder.conf`. The tool will look in the following locations (in order) for the configuration file, using the first one it finds and then stopping:
+
+1.) `${HOME}/.atmosphereiot/`
+2.) `${HOME}`
+3.) Directory of this project's source (the same directory as this README).
+
+The configuration file is in JSON format and contains two keys:
+* `eelSourceDir` - The home directory of any EEL source. If you, for example, generate a new eel called tmp102, a directory containing this EEL's source will be generated in `${eelSourceDir}/tmp102_EEL`. If you use this configuration option, you do not need to supply the `--dir` option on the command line. 
+* `eelFileDir` - The directory that any generated .eel files will be written to. If you use this configuration option, you do not need to supply the `--dest` option on the command line. 
+
+*NOTE*: If you supply `eelSourceDir` in the configuration file, you must use the `--name` option when you generate your eel file (eg `eelutil.js --generate --name="tmp102"`). The tool will automatically search in `${eelSourceDir}/tmp102_EEL` for the `metadata.json` file for your EEL.
+
+### Full Usage Example with Config File
+1.) Place the following in ${HOME}/.atmosphereiot/eel-builder.conf:
+```js
+{
+    "eelSourceDir": "/home/[YOUR USERNAME]/myEelSource",
+    "eelFileDir": "/home/[YOUR USERNAME]/myGeneratedEels"
+}
+```
+
+Replace `[YOUR USERNAME]` with your username. If in Windows, replace `/home/[YOUR USERNAME]` with `C:\\Users\\[YOUR USERNAME]`.
+
+2.) Run `node eelbuilder.js --new --name="tmp102"`. You should see the following output:
+```
+Generating project in /home/[YOUR USERNAME]/myEelSource/tmp102_EEL
+Writing project metadata to /home/[YOUR USERNAME]/myEelSource/tmp102_EEL/metadata.json
+Done!
+```
+
+3.) Run `node eelbuilder.js --generate --name="tmp102"`. You should see the following output:
+```
+Ability dir does not exist, creating it.
+Unable to read ability source home/[YOUR USERNAME]/myEelSource/tmp102_EEL/elements/abilities/myability.c
+Generating default stub home/[YOUR USERNAME]/myEelSource/tmp102_EEL/elements//abilities/myability.c
+Writing EEL to home/[YOUR USERNAME]/myGeneratedEels/tmp102.eel
+```
 
 ### Building Example EELS
 Run `./build_examples.sh` to build all of the example EELs.
@@ -15,13 +54,17 @@ Run `./build_examples.sh` to build all of the example EELs.
 Building an eel happens in three steps
 
 ### 1.) Creating a source directory
-Use the `--new` option to generate a new EEL source directory with a bare-bones metadata file. 
+Use the `--new` option to generate a new EEL source directory with a bare-bones metadata file. You must use the `--name` option in conjunction with this option. If you're not using a configuration file, you must also use the `--dir` option. 
+
+The directory will be located at `${dir}/${name}_EEL`. The tool will also output this directory on the command line.
 
 ### 2.) Write your code
 Create your driver, element, and ability code. 
 
 ### 3.) Generate an EEL
-Use the `--generate` option to pacakge everything into a single EEL file that can be imported into Atmosphere Studio.
+Use the `--generate` option to pacakge everything into a single EEL file that can be imported into Atmosphere Studio. If you're not using a configuration file, you must use the `--dir` option to point the tool to the EEL source directory, and the `--dest` option to tell the tool where to put the generated .eel file. 
+
+If you're using the configuration file, and you've specified the `eelSourceDir` configuration option, you may use the `--name` option instead, and the tool will automatically find the source directory for you. 
 
 ## metadata.json
 
