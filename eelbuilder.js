@@ -59,8 +59,6 @@ function writeMetaData(dirName, eelName) {
 		libName: eelName, 
 		manufacturer: "",
 		description: "",
-		icon: "",
-		image: "",
 		version: "",
 		eelVersion: "3",
 		shoppingCarLinks: {

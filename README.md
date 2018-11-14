@@ -75,8 +75,6 @@ This is intended to be a user editable file. Here's an example:
 	"manufacturer": "Mikroelektronika",
 	"description": "MLX90614ESF-AAA Temperature Sensor mikroBUS™ Click™ Platform Evaluation Expansion Board",
 	"type": "Temperature Sensor",
-	"icon": "",
-	"image": "",
 	"version": "",
 	"eelVersion": "3",
 	"requires": [
@@ -145,13 +143,7 @@ The manufacturer of your sensor. This is optional, but recommended.
 A user friendly description of the sensor and what it does.
 
 #### type
-There are some standard sensor types that Atmosphere uses to group sensors together. TODO: Options?
-
-#### icon
-A photo of the sensor, can be left blank.
-
-#### image
-A manufacturer image, can be left blank. 
+This is the type of sensor. Typical values would be "Temperature Sensor", "Humidity Sensor", "Accelerometer", etc...
 
 #### version
 An EEL version field. This is not used within the tool at all, so you can place what you'd like here, or nothing at all.
@@ -171,10 +163,25 @@ These are fields that are specific to the given element object
 Name of the element
 
 #### type
-Type of the element. Typically "Embedded" + name
+Type of the element. Typically "Embedded" + name. No spaces or other special characters, only letters and numbers.
 
 #### icon
-The icon used in the element toolbox. TODO: what about desginer view?
+The icon used. Must be one of the following:
+
+* `EmbeddedAccelerometerMagnetometer.svg`
+* `EmbeddedAirQuality.svg`
+* `EmbeddedBeep.svg`
+* `EmbeddedBLEConnection.svg`
+* `EmbeddedBLECharacteristicCustom.svg`
+* `EmbeddedCurrentMonitor.svg`
+* `EmbeddedGyroscope.svg`
+* `EmbeddedLedArray.svg`
+* `EmbeddedMagnetometer.svg`
+* `EmbeddedPressure.svg`
+* `EmbeddedTemperature.svg`
+* `EmbeddedTouch.svg`
+
+If none of these apply, you can use `EmbeddedFunction.svg` and write an issue so we can make an applicable icon.
 
 #### defaultAbility
 The default selected ability. This must be populated with one of the element abilities.
