@@ -9,7 +9,7 @@ Here, you will find example EELS for various different sensors and use cases.
 ### Basic GPIO Sensor
 * [Relay Click](relayclick) - A basic GPIO relay controller
 ### Basic PWM Sensor
-* TODO
+* [Buzzer Click](buzzerclick) - A basic PWM controlled Buzzer
 ### Sensor With Interrupts
 * [Motion Click](motionclick) - A motion sensing click that sends async events when motion is detected
 ### Multiple Protocol Sensor

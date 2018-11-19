@@ -1,0 +1,110 @@
+{
+	"libName": "buzzerclick",
+	"manufacturer": "Mikroelektronika",
+	"description": " Buzzer Click",
+	"type": "Buzzer",
+	"icon": "",
+	"image": "",
+	"version": "",
+	"eelVersion": "3",
+	"shoppingCartLinks":{
+		"digikey":{
+			"links":{
+				"info":"https://www.digikey.com/product-detail/en/mikroelektronika/MIKROE-945/1471-1312-ND/4495676"
+			},
+			
+			"cartData":{
+				"part":"1471-1312-ND",
+				"partid":"4495676",
+				"source":"dkstudio",
+				"qty":"1"
+			}
+		}
+	},
+	"requires": [
+		"embedded", "gpio", "pwm"
+	],
+	"elements": [
+		{
+			"name": "BuzzerClick",
+			"type": "EmbeddedBuzzerClick",
+			"icon": "EmbeddedBeep.svg",
+			"defaultAbility":"turnOn",
+			"defaultTrigger":"turnedOn",
+			"hidden": false,
+			"abilities": [
+				{
+					"name": "setup",
+					"hidden":true
+				},
+				{
+					"name": "turnOn",
+					"triggers": ["turnedOn"]
+				},
+				{
+					"name": "turnOff",
+					"triggers": ["turnedOff"]
+				},
+				{
+					"name": "setVolumeLow",
+					"triggers": ["volumeSetLow"]
+				},
+				{
+					"name": "setVolumeMedium",
+					"triggers": ["volumeSetMedium"]
+				},
+				{
+					"name": "setVolumeHigh",
+					"triggers": ["volumeSetHigh"]
+				},
+				{
+					"name": "beep",
+					"triggers": ["beeped"]
+				}
+			],
+			"properties": [
+				{
+					"name": "pwmDriverInstance",
+					"input": "number",
+					"value": 0
+				},
+				{
+					"name": "pwmPin",
+					"input": "number",
+					"value": 0
+				},
+				{
+					"name": "initialVolumePct",
+					"input": "number",
+					"value": 100
+				},
+				{
+					"name": "frequencyHz",
+					"input": "number",
+					"value": 3800
+				}
+			],
+			"triggers": [],
+			"variables": [
+				],
+			"language": {
+				"en-US": {
+					"EmbeddedBuzzerClick": "Buzzer Click",
+					"pwmDriverInstance": "PWM Driver Instance",
+					"setup": "Setup",
+					"pwmPin": "PWM GPIO Pin",
+					"initialVolumePct": "Initial Volume (%)",
+					"frequencyHz": "Frequency (Hz)",
+					"turnOn": "Turn On",
+					"turnedOn": "Turned On",
+					"turnOff": "Turn Off",
+					"turnedOff": "Turned Off",
+					"beep": "Beep",
+					"setVolumeLow": "Set Volume Low",
+					"setVolumeMedium": "Set Volume Medium",
+					"setVolumeHigh": "Set Volume High"
+				}
+			}
+		}
+	]
+}
