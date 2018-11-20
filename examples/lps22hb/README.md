@@ -18,6 +18,7 @@ This example demonstrates a sensor that can be read over multiple protocols. the
     - `ATMO_DRIVERTYPE_SPI`
     - `ATMO_DRIVERTYPE_UART`
     - `ATMO_DRIVERTYPE_WIFI`
+    
     These are constants defined in the base Atmosphere embedded firmware. 
 
 * There is currently no way to hide irrelevant properties (eg. SPI CS if I2C is being used).
