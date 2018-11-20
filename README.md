@@ -2,6 +2,9 @@
 
 This is designed to be a simple command line utility to help developers generate EEL files.
 
+## EEL Examples
+See the [examples](/examples) directory for annotated example EELs.
+
 ## General Usage
 
 Run `node eelutil.js --new --name="tmp102" --dir="/home/nick"` to generate a bare-bones directory containing an eel metadata.json file and empty directories for files and elements. 
