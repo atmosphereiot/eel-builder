@@ -195,6 +195,8 @@ Sets the element visibility.
 #### abilities
 A list of objects specifying the element's abilities. See [Ability Object](#ability-object).
 
+_NOTE_: Every element _must contain_ a 'setup' ability. This ability will be called once on startup automatically.
+
 #### properties
 A list of objects specifying the element's properties. See [Property Object](#property-object).
 
@@ -203,6 +205,8 @@ A list of triggers not associated with any specific abilities. Typically empty.
 
 #### variables
 A list of variables and their types, used to store element state. See [Relay Click](examples/relayclick/metadata.json) for an example of usage. 
+
+It is considered good practice to use a variable called `handle` to store an integer handle for each instance of your EEL, as the [Relay Click](examples/relayclick) EEL does. This allows for multiple Relay Clicks to be used in the same project, with the handle being used to differentiate the instances. For flexibility, every EEL should do this (although not all currently do).
 
 #### language
 An object containing the language encoding for the object. This specifies how abilities and names should be printed on the screen in various languages. See [Language Object](#language-object).
