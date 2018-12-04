@@ -97,6 +97,76 @@ The last step in the metedata is the language object. This tells the studio how 
 }
 ```
 
+Your final metadata.json file should look like this:
+```javascript
+{
+  "libName": "relayclick",
+  "manufacturer": "MikroElektronika",
+  "description": "Dual Relay Evaluation Board",
+  "version": "",
+  "eelVersion": "3",
+  "shoppingCarLinks": {},
+  "requires": [
+    "embedded",
+    "gpio"
+  ],
+  "elements": [
+    {
+      "name": "RelayClick",
+      "type": "EmbeddedRelayClick",
+      "icon": "EmbeddedFuncton.svg",
+      "defaultAbility": "setRelay1On",
+      "defaultTrigger": "relay1SetOn",
+      "hidden": false,
+      "abilities": [
+        {
+          "name": "setup",
+          "hidden": true,
+          "triggers": []
+        },
+        {
+          "name": "setRelay1On",
+          "triggers": ["relay1SetOn"]
+        },
+        {
+          "name": "setRelay1Off",
+          "triggers": ["relay1SetOff"]
+        },
+        {
+          "name": "toggleRelay1",
+          "triggers": ["relay1Toggled"]
+        }
+      ],
+      "properties": [
+        {
+          "name": "gpioDriverInstance",
+          "type": "number",
+          "value": 0
+        },
+        {
+          "name": "relay1GpioPin",
+          "type": "number",
+          "value": 0
+        }
+      ],
+      "triggers": [],
+      "variables": [],
+      "language": {
+        "en-US": {
+            "EmbeddedRelayClick": "Relay Click",
+            "setRelay1On": "Set Relay 1 On",
+            "relay1SetOn": "Relay 1 Set On",
+            "setRelay1Off": "Set Relay 1 Off",
+            "relay1SetOff": "Relay 1 Set Off",
+            "toggleRelay1": "Toggle Relay 1",
+            "relay1Toggled": "Relay 1 Toggled"
+        }
+			}
+    }
+  ]
+}
+```
+
 ## Step 5: Generating stub abilities
 We can use the tool to generate stub .c files that we can fill in later for all of its abilities. To do this, navigate to the eel-builder directory and run
 `node eelbuilder.js --generate --dir="../relayclick_EEL" --dest="../"`
