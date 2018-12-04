@@ -69,16 +69,26 @@ function writeMetaData(dirName, eelName) {
 			name: "myelement",
 			type: "",
 			icon: "",
+			defaultAbility: "",
+			defaultTrigger: "",
 			hidden: false,
 			abilities: [{
-				name: "myability",
+				name: "setup",
+				hidden: true,
 				triggers:[]
 			}],
 			properties: [{
 				name: "myproperty",
+				type: "number",
+				value: 0
 			}],
 			triggers: [],
-			variables: []
+			variables: [],
+			language: {
+				"en-US": {
+					
+				}
+			}
 		}]
 	};
 
