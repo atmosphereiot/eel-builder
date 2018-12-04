@@ -275,7 +275,7 @@ return ATMO_RelayClick_ToggleRelay1() ? ATMO_Status_Success : ATMO_Status_Fail;
 ```
 
 ## Step 8: Generate Final EEL
-Navigate to the eel-builder directory and run: `node eelbuilder.js --generate --dir="../relayclick_EEL" --dest="../"
+Navigate to the eel-builder directory and run: `node eelbuilder.js --generate --dir="../relayclick_EEL" --dest="../"`
 
 ## Step 9: Celebrate
 Congratulations, you've created your first EEL. You can see a more complex version of this EEL in the examples directory, [here](../relayclick).
