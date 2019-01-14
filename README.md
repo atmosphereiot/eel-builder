@@ -173,18 +173,32 @@ Type of the element. Typically "Embedded" + name. No spaces or other special cha
 #### icon
 The icon used. Must be one of the following:
 
-* `EmbeddedAccelerometerMagnetometer.svg`
+* `EmbeddedAccelerometer.svg`
+* `EmbeddedADCPin.svg`
 * `EmbeddedAirQuality.svg`
+* `EmbeddedAmbientLight.svg`
 * `EmbeddedBeep.svg`
 * `EmbeddedBLEConnection.svg`
-* `EmbeddedBLECharacteristicCustom.svg`
+* `EmbeddedCellularConnection.svg`
 * `EmbeddedCurrentMonitor.svg`
+* `EmbeddedEthernetConnection.svg`
+* `EmbeddedGeneric.svg`
 * `EmbeddedGyroscope.svg`
-* `EmbeddedLedArray.svg`
+* `EmbeddedHumidity.svg`
+* `EmbeddedLCDScreen.svg`
+* `EmbeddedLEDArray.svg`
+* `EmbeddedLoraWanConnection.svg`
 * `EmbeddedMagnetometer.svg`
+* `EmbeddedMotion.svg`
+* `EmbeddedMotor.svg`
 * `EmbeddedPressure.svg`
+* `EmbeddedRelay.svg`
+* `EmbeddedSigfox.svg`
 * `EmbeddedTemperature.svg`
+* `EmbeddedTempHumidity.svg`
 * `EmbeddedTouch.svg`
+* `EmbeddedWifiConnection.svg`
+
 
 If none of these apply, you can use `EmbeddedFunction.svg` and write an issue so we can make an applicable icon.
 
