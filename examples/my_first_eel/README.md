@@ -70,8 +70,8 @@ Your properties list should look like this:
     "properties": [
     {
         "name": "gpioDriverInstance",
-        "type": "number",
-        "value": 0
+        "type": "driverInstance",
+        "driverType": "gpio"
     },
     {
         "name": "relay1GpioPin",
@@ -140,8 +140,8 @@ Your final metadata.json file should look like this:
       "properties": [
         {
           "name": "gpioDriverInstance",
-          "type": "number",
-          "value": 0
+          "type": "driverInstance",
+          "driverType": "gpio"
         },
         {
           "name": "relay1GpioPin",

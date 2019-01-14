@@ -28,10 +28,12 @@
 		{
 			"name": "IRThermoClick",
 			"type": "EmbeddedIRThermoClick",
-			"icon": "EmbeddedTempHumidity.svg",
+			"icon": "EmbeddedTemperature.svg",
 			"defaultAbility": "readTemperature",
 			"defaultTrigger": "temperatureRead",
 			"hidden": false,
+			"helpPageHref": "https://developer.atmosphereiot.com/documents/elements/mikroelektronikairthermoclickelement.html",
+
 			"abilities": [
 				{
 					"name": "setup",
@@ -45,8 +47,8 @@
 			"properties":[
 				{
 					"name":"i2cInstance",
-					"input":"number",
-					"value":"ATMO_DEFAULT_I2C"
+					"input": "driverInstance",
+					"driverType": "i2c"
 				},
 				
 				{

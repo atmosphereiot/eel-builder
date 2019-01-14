@@ -32,6 +32,8 @@
 			"defaultAbility":"setup",
 			"defaultTrigger":"motionDetected",
 			"hidden": false,
+			"helpPageHref": "https://developer.atmosphereiot.com/documents/elements/mikroelektronikamotionclickelement.html",
+
 			"abilities": [
 				{
 					"name": "setup",
@@ -46,8 +48,8 @@
 			"properties": [
 				{
 					"name": "gpioDriverInstance",
-					"input": "number",
-					"value": 0
+					"input": "driverInstance",
+					"driverType": "gpio"
 				},
 				{
 					"name": "enablePin",

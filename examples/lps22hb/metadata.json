@@ -32,6 +32,7 @@
 		"icon": "EmbeddedPressure.svg",
 		"defaultAbility": "readPressure",
 		"defaultTrigger": "pressureRead",
+		"helpPageHref": "https://developer.atmosphereiot.com/documents/elements/stmicroelectronicslps22hbelement.html",
 		"hidden": false,
 		"abilities": [{
 				"name": "setup",
@@ -55,18 +56,18 @@
       		},
 			{
 				"name": "i2cInstance",
-				"input": "number",
-				"value": "0"
+				"input": "driverInstance",
+				"driverType": "i2c"
 			},
 			{
 				"name": "spiInstance",
-				"input": "number",
-				"value": "0"
+				"input": "driverInstance",
+				"driverType": "spi"
 			},
 			{
 				"name": "gpioInstance",
-				"input": "number",
-				"value": "0"
+				"input": "driverInstance",
+				"driverType": "gpio"
 			},
 			{
 				"name": "csPin",

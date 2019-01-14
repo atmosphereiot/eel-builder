@@ -28,9 +28,10 @@
 		{
 			"name": "BuzzerClick",
 			"type": "EmbeddedBuzzerClick",
-			"icon": "EmbeddedBeep.svg",
+			"icon": "EmbeddedBuzzer.svg",
 			"defaultAbility":"turnOn",
 			"defaultTrigger":"turnedOn",
+			"helpPageHref": "https://developer.atmosphereiot.com/documents/elements/mikroelektronikabuzzerclickelement.html",
 			"hidden": false,
 			"abilities": [
 				{
@@ -65,8 +66,8 @@
 			"properties": [
 				{
 					"name": "pwmDriverInstance",
-					"input": "number",
-					"value": 0
+					"input": "driverInstance",
+					"driverType": "pwm"
 				},
 				{
 					"name": "pwmPin",
@@ -100,9 +101,13 @@
 					"turnOff": "Turn Off",
 					"turnedOff": "Turned Off",
 					"beep": "Beep",
+					"beeped": "Beeped",
 					"setVolumeLow": "Set Volume Low",
 					"setVolumeMedium": "Set Volume Medium",
-					"setVolumeHigh": "Set Volume High"
+					"setVolumeHigh": "Set Volume High",
+					"volumeSetLow": "Volume Set Low",
+					"volumeSetMedium": "Volume Set Medium",
+					"volumeSetHigh": "Volume Set High"
 				}
 			}
 		}

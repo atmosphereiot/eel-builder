@@ -33,6 +33,8 @@
 		"defaultAbility": "readZAcceleration",
 		"defaultTrigger": "zAccelerationRead",
 		"hidden": false,
+		"helpPageHref": "https://developer.atmosphereiot.com/documents/elements/stmicroelectronicslis3dhelement.html",
+
 		"abilities": [{
 				"name": "setup",
 				"hidden":true
@@ -68,8 +70,8 @@
 		],
 		"properties": [{
 				"name": "spiInstance",
-				"input": "number",
-				"value": "0"
+				"input": "driverInstance",
+				"driverType": "spi"
 			},
 
 			{

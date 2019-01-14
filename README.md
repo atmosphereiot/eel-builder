@@ -106,8 +106,8 @@ This is intended to be a user editable file. Here's an example:
 			"properties":[
 				{
 					"name":"i2cInstance",
-					"input":"number",
-					"value":"ATMO_DEFAULT_I2C"
+					"input":"driverInstance",
+					"driverType": "i2c"
 				},
 				
 				{
@@ -233,7 +233,27 @@ A list of string trigger names. Typically the list will only have one trigger, b
 The name of the property. Should not have spaces.
 
 #### input
-The type of the property. Can be number, text, select, checkbox
+The type of the property. Can be number, text, select, checkbox, or driverInstance.
+
+`driverInstance` properties are to be used whenever an EEL needs a specific embedded driver to function.
+
+#### driverType
+The driver type, if a `driverInstance` property. This can be one of the following:
+
+* `adc`
+* `ble`
+* `block`
+* `datetime`
+* `filesytem`
+* `gpio`
+* `http`
+* `i2c`
+* `interval`
+* `nfc`
+* `pwm`
+* `spi`
+* `uart`
+* `wifi`
 
 #### value
 The default value of the property.

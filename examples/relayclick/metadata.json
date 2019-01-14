@@ -32,6 +32,8 @@
 			"defaultAbility":"setRelay1On",
 			"defaultTrigger":"relay1SetOn",
 			"hidden": false,
+			"helpPageHref": "https://developer.atmosphereiot.com/documents/elements/mikroelektronikarelayclickelement.html",
+
 			"abilities": [
 				{
 					"name": "setup",
@@ -78,8 +80,8 @@
 			"properties": [
 				{
 					"name": "gpioDriverInstance",
-					"input": "number",
-					"value": 0
+					"input": "driverInstance",
+					"driverType": "gpio"
 				},
 				{
 					"name": "relay1Pin",
@@ -114,7 +116,17 @@
 					"toggleRelay2": "Toggle Relay 2",
 					"setBothRelaysOn": "Set Both Relays On",
 					"setBothRelaysOff": "Set Both Relays Off",
-					"toggleBothRelays": "Toggle Both Relays"
+					"toggleBothRelays": "Toggle Both Relays",
+					"relay1SetOn": "Relay 1 Set On",
+					"relay1SetOff": "Relay 1 Set Off",
+					"relay2SetOn": "Relay 2 Set On",
+					"relay2SetOff": "Relay 2 Set Off",
+					"relay1Toggled": "Relay 1 Toggled",
+					"relay2Toggled": "Relay 2 Toggled",
+					"bothRelaysSetOn": "Both Relays Set On",
+					"bothRelaysSetOff": "Both Relays Set Off",
+					"bothRelaysToggled": "Both Relays Toggled"
+
 				}
 			}
 		}
