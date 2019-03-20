@@ -6,8 +6,9 @@
   "url": "https://atmosphereiot.com",
   "email": "email@atmosphereiot.com",
   "dependencies": {
-    "mkdirp": "latest",
+    "eol": "^0.9.1",
     "minimist": "latest",
+    "mkdirp": "latest",
     "walk-sync": "latest"
   },
   "scripts": {

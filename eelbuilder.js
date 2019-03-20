@@ -5,6 +5,7 @@ const walksync = require('walk-sync');
 const crypto = require('crypto');
 const os = require('os');
 var path = require('path');
+const eol = require('eol')
 
 var args = minimist(process.argv.slice(2), {  
     string: ['name','dir','dest'],
@@ -184,8 +185,9 @@ function generate(eelDir, eelDest) {
 	var eelFileName = path.join(eelDest, getSafeEelName(metadata.libName) + ".eel");
 
 	console.log("Writing EEL to " + eelFileName);
-	
-	fs.writeFileSync(eelFileName, eelJSONWithMD5);
+
+	// Replace newlines
+	fs.writeFileSync(eelFileName, eol.lf(eelJSONWithMD5));
 }
 
 function getEelDirName(eelName) {
