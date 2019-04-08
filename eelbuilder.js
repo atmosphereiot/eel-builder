@@ -145,26 +145,28 @@ function generate(eelDir, eelDest) {
 
 	metadata.files = {};
 
-	// Populate files
-	walksync(eelDir + '/files', { directories: false }).forEach(function(file) {
+	if(fs.existsSync(eelDir + '/files')) {
+		// Populate files
+		walksync(eelDir + '/files', { directories: false }).forEach(function(file) {
 
-		// For each file, split out each dir level
-		splitPath = file.split('/');
-		var dirs = splitPath.slice(0, splitPath.length - 1);
-		var fileName = splitPath[splitPath.length - 1];
+			// For each file, split out each dir level
+			splitPath = file.split('/');
+			var dirs = splitPath.slice(0, splitPath.length - 1);
+			var fileName = splitPath[splitPath.length - 1];
 
-		// Keep digging down, creating an object for each subdir
-		var curPath = metadata.files;
-		
-		dirs.forEach(function(dir) {
-			if(!(dir in curPath)) {
-				curPath[dir] = {};
-			}
-			curPath = curPath[dir];
+			// Keep digging down, creating an object for each subdir
+			var curPath = metadata.files;
+			
+			dirs.forEach(function(dir) {
+				if(!(dir in curPath)) {
+					curPath[dir] = {};
+				}
+				curPath = curPath[dir];
+			});
+
+			curPath[fileName] = fs.readFileSync(eelDir + '/files/' + file, 'utf8');
 		});
-
-		curPath[fileName] = fs.readFileSync(eelDir + '/files/' + file, 'utf8');
-	});
+	}
 
 	var eelJSONWithoutMD5 = JSON.stringify(metadata, null, 2);
 	
