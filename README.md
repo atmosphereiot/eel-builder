@@ -11,7 +11,7 @@ There is a detailed walktrough creating a simple EEL [here](/examples/my_first_e
 
 Run `node eelutil.js --new --name="tmp102" --dir="/home/nick"` to generate a bare-bones directory containing an eel metadata.json file and empty directories for files and elements. 
 
-Once you have this directory created and you've customized the metadata file and written all of your code, you can run `node eelutil.js --generate --dir="/home/nick/tmp102_EEL" --dest="/home/nick/` to generate the .eel file, which will be located at `/home/nick/tmp102.eel`.
+Once you have this directory created and you've customized the metadata file and written all of your code, you can run `node eelutil.js --generate --dir="/home/nick/tmp102_EEL" --dest="/home/nick/" to generate the .eel file, which will be located at `/home/nick/tmp102.eel`.
 
 ## Config File
 This tool accepts an optional configuration file named `eel-builder.conf`. The tool will look in the following locations (in order) for the configuration file, using the first one it finds and then stopping:
