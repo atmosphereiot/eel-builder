@@ -236,7 +236,7 @@ function validate(metadata, isVariant) {
 						success = false;
 					}
 				}
-				
+
 				if(ability.triggers) {
 					ability.triggers.forEach(function(trigger) {
 						if(!alphaNumericRegex.test(trigger)) {
@@ -300,8 +300,8 @@ function validate(metadata, isVariant) {
 
 	// Validate variants
 	if(metadata.variants) {
-		console.log(`Validating variant ${variant.libname}`);
 		metadata.variants.forEach(function(variant) {
+			console.log(`Validating variant ${variant.libname}`);
 			if(!validate(variant, true)) {
 				success = false;
 			}
