@@ -9,7 +9,7 @@ const eol = require('eol')
 
 var args = minimist(process.argv.slice(2), {  
     string: ['name','dir','dest'],
-    boolean: ['new', 'help', 'generate', 'refresh', 'verbose'],
+    boolean: ['new', 'help', 'generate', 'refresh', 'verbose', 'noicon'],
     alias: {'h' :'help'},
 });
 
@@ -71,6 +71,7 @@ if( args.help || process.argv.length === 2) {
 	console.log("--dir: Specify EEL project source directory. Used in conjunction with --generate or --new.");
 	console.log("--dest: Specify location to put generated EEL file");
 	console.log("--verbose: Provide verbose output");
+	console.log("--noicon: Do not perform icon validation")
 	console.log("\nTypical Usage");
 	console.log("---------------------");
 	console.log("node eelutil.js --new --name=\"tmp102\" --dir=\"~\" -> Generates a new project structure in user's home directory");
@@ -176,9 +177,11 @@ function validate(metadata, isVariant) {
 		}
 
 		if(element.icon != undefined) {
-			if(!VALID_ICONS.includes(element.icon)) {
-				console.log(`ERROR: Element Icon (${element.icon}) is not valid. Valid options: ${VALID_ICONS}`);
-				success = false;
+			if(args.noicon == false) {
+				if(!VALID_ICONS.includes(element.icon)) {
+					console.log(`ERROR: Element Icon (${element.icon}) is not valid. Valid options: ${VALID_ICONS}`);
+					success = false;
+				}
 			}
 		} else {
 			if(!isVariant) {
@@ -264,12 +267,19 @@ function validate(metadata, isVariant) {
 					console.log(`ERROR: Property Name (${property.name}) must contain only letters and numbers`);
 					success = false;
 				}
-	
-				if(!VALID_INPUTS.includes(property.input)) {
-					console.log(`ERROR: Property Input (${property.input}) invalid. Valid options: ${VALID_INPUTS}`);
-					success = false;
+				
+				if(property.input != undefined) {
+					if(!VALID_INPUTS.includes(property.input)) {
+						console.log(`ERROR: Property Input (${property.input}) invalid. Valid options: ${VALID_INPUTS}`);
+						success = false;
+					}
+				} else {
+					if(!isVariant) {
+						console.log(`ERROR: Property Input field missing for property ${property.name}`);
+						success = false;	
+					}
 				}
-	
+
 				if(property.driverType) {
 					if(!VALID_DRIVERS.includes(property.driverType)) {
 						console.log(`ERROR: Driver Type (${property.driverType}) invalid. Valid options: ${VALID_DRIVERS}`);
@@ -301,7 +311,7 @@ function validate(metadata, isVariant) {
 	// Validate variants
 	if(metadata.variants) {
 		metadata.variants.forEach(function(variant) {
-			console.log(`Validating variant ${variant.libname}`);
+			console.log(`Validating variant ${variant.libName}`);
 			if(!validate(variant, true)) {
 				success = false;
 			}
@@ -359,7 +369,7 @@ function generate(eelDir, eelDest) {
 
 	if(!validate(metadata, false)) {
 		console.log("Failed to validate EEL metadata\n");
-		return;
+		return 1;
 	}
 
 	metadata.files = {};
@@ -413,6 +423,7 @@ function generate(eelDir, eelDest) {
 
 	// Replace newlines
 	fs.writeFileSync(eelFileName, eol.lf(eelJSONWithMD5));
+	return 0;
 }
 
 function getEelDirName(eelName) {
@@ -468,9 +479,11 @@ if( args.generate ) {
 			return;
 		}
 
-		generate(possibleDir, dest);
+		var result = generate(possibleDir, dest);
+		process.exit(result);
 	} else {
-		generate(dir, dest);
+		var result =  generate(dir, dest);
+		process.exit(result);
 	}
 }
 
@@ -493,4 +506,5 @@ if( args.new && args.name ) {
 
 	writeMetaData(dirName, args.name);
 	console.log("Done!");
+	return 0;
 }
