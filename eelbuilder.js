@@ -148,13 +148,15 @@ function writeMetaData(dirName, eelName) {
 
 function checkForLanguageTag(elementdata, tag) {
 	// Validate language for element metadata
+	var success = true;
+
 	Object.keys(elementdata.language).forEach(function(language) {
-		if(language[tag] == undefined) {
-			return false;
+		if(elementdata.language[language][tag] == undefined) {
+			success = false;
 		}
 	});
 
-	return true;
+	return success;
 }
 
 function validate(metadata, isVariant) {
@@ -227,12 +229,14 @@ function validate(metadata, isVariant) {
 					console.log(`ERROR: Ability Name (${ability.name}) must contain only letters and numbers`);
 					success = false;
 				}
-	
-				if(!checkForLanguageTag(element, ability.name)) {
-					console.log(`ERROR: Language tag for ability (${ability.name}) missing`);
-					success = false;
+				
+				if(ability.hidden == undefined || ability.hidden == false) {
+					if(!checkForLanguageTag(element, ability.name)) {
+						console.log(`ERROR: Language tag for ability (${ability.name}) missing`);
+						success = false;
+					}
 				}
-	
+				
 				if(ability.triggers) {
 					ability.triggers.forEach(function(trigger) {
 						if(!alphaNumericRegex.test(trigger)) {
