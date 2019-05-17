@@ -9,7 +9,7 @@ const eol = require('eol')
 
 var args = minimist(process.argv.slice(2), {  
     string: ['name','dir','dest'],
-    boolean: ['new', 'help', 'generate', 'refresh', 'verbose', 'noicon'],
+    boolean: ['new', 'help', 'generate', 'refresh', 'verbose', 'noicon', 'force'],
     alias: {'h' :'help'},
 });
 
@@ -72,6 +72,7 @@ if( args.help || process.argv.length === 2) {
 	console.log("--dest: Specify location to put generated EEL file");
 	console.log("--verbose: Provide verbose output");
 	console.log("--noicon: Do not perform icon validation")
+	console.log("--force: Do not perform any validation")
 	console.log("\nTypical Usage");
 	console.log("---------------------");
 	console.log("node eelutil.js --new --name=\"tmp102\" --dir=\"~\" -> Generates a new project structure in user's home directory");
@@ -367,9 +368,11 @@ function generate(eelDir, eelDest) {
 		});
 	});
 
-	if(!validate(metadata, false)) {
-		console.log("Failed to validate EEL metadata\n");
-		return 1;
+	if(args.force == false) {
+		if(!validate(metadata, false)) {
+			console.log("Failed to validate EEL metadata\n");
+			return 1;
+		}
 	}
 
 	metadata.files = {};
