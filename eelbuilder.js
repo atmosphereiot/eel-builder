@@ -399,7 +399,7 @@ function generate(eelDir, eelDest) {
 			if(!VALID_FILE_TYPES.includes(fileName.split('.').pop())) {
 				console.log(`ERROR: Invalid File ${fileName} will be ignored`);
 			} else {
-				curPath[fileName] = fs.readFileSync(eelDir + '/files/' + file, 'utf8');
+				curPath[fileName] = eol.lf(fs.readFileSync(eelDir + '/files/' + file, 'utf8'));
 			}
 		});
 	}
