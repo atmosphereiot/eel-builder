@@ -257,7 +257,9 @@ The driver type, if a `driverInstance` property. This can be one of the followin
 * `adc`
 * `ble`
 * `block`
+* `cellular`
 * `datetime`
+* `embeddedCloud`
 * `filesytem`
 * `gpio`
 * `http`

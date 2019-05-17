@@ -28,7 +28,7 @@
 		{
 			"name": "MotionClick",
 			"type": "EmbeddedMotionClick",
-			"icon": "EmbeddedMotionClick.svg",
+			"icon": "EmbeddedMotion.svg",
 			"defaultAbility":"setup",
 			"defaultTrigger":"motionDetected",
 			"hidden": false,

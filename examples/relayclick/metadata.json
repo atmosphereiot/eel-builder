@@ -28,7 +28,7 @@
 		{
 			"name": "RelayClick",
 			"type": "EmbeddedRelayClick",
-			"icon": "EmbeddedRelayClick.svg",
+			"icon": "EmbeddedRelay.svg",
 			"defaultAbility":"setRelay1On",
 			"defaultTrigger":"relay1SetOn",
 			"hidden": false,
