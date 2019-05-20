@@ -161,6 +161,11 @@ A list of features required by the EEL to function properly. Options: adc, spi, 
 
 Typically, the list will be something like `["embedded", "i2c"]`
 
+#### variants
+A lit of variants of the EEL. These will be displayed in the Atmosphere Studio as their own EEL. The format of each object in the list is identical to a regular EEL. Only fields that are _different_ in the variant must be included. 
+
+When the EEL is imported, this object will be _overlayed_ on top of the base EEL. See [TSD305](examples/tsd305/metadata.json) for an example.
+
 ### Element Fields
 These are fields that are specific to the given element object
 

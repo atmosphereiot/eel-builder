@@ -1,0 +1,164 @@
+{
+  "libName": "tsd305",
+  "manufacturer": "TEConnectivity",
+  "description": "Infrared Temperature Sensor",
+  "version": "",
+  "type": "Infrared Temperature Sensor",
+  "eelVersion": "3",
+	"shoppingCartLinks":{
+		"digikey":{
+			"links":{
+				"info":"https://www.digikey.com/product-detail/en/te-connectivity-measurement-specialties/DPP902S000/223-1786-ND/6685752"
+			},
+			
+			"cartData":{
+				"part":"223-1786-ND",
+				"partid":"6685752",
+				"source":"dkstudio",
+				"qty":"1"
+			}
+		}
+	},
+  "requires": [
+    "embedded", "i2c"
+  ],
+  "elements": [
+    {
+      "name": "TSD305",
+      "type": "EmbeddedTSD305",
+      "icon": "EmbeddedTempHumidity.svg",
+      "defaultAbility": "readTemperature",
+      "defaultTrigger": "temperatureRead",
+      "hidden": false,
+      "abilities": [
+        {
+          "name": "setup",
+          "hidden": true,
+          "triggers": []
+        },
+        {
+          "name": "readTemperature",
+          "triggers": ["temperatureRead"]
+        },
+        {
+          "name": "readObjectTemperature",
+          "triggers": ["objectTemperatureRead"]
+        }
+      ],
+      "properties": [
+        {
+          "name": "i2cInstance",
+          "input": "driverInstance",
+          "driverType": "i2c"
+        },
+        {
+          "name": "gpioInstance",
+          "input": "driverInstance",
+          "driverType": "gpio"
+        },
+        {
+          "name":"weatherShield",
+          "input":"checkbox",
+          "value": false
+        },
+        {
+          "name":"weatherShieldCsA",
+          "input": "number",
+          "value": 9
+        },
+        {
+          "name":"weatherShieldCsB",
+          "input": "number",
+          "value": 10
+        },
+        {
+          "name":"weatherShieldEn",
+          "input": "number",
+          "value": 11
+        }
+      ],
+      "triggers": [],
+      "variables": [],
+      "language": {
+        "en-US": {
+          "EmbeddedTSD305": "TSD305 Temperature",
+          "i2cInstance": "I2C Driver Instance",
+          "gpioInstance": "GPIO Driver Instance",
+          "i2cAddress": "I2C Address",
+          "readTemperature": "Read Temperature (°C)",
+          "temperatureRead": "Temperature Read",
+          "readObjectTemperature": "Read Object Temperature (°C)",
+          "objectTemperatureRead": "Object Temperature Read",
+          "weatherShield": "TE Arduino Weather Shield",
+          "weatherShieldCsA": "Weather Shield CSA Pin",
+          "weatherShieldCsB": "Weather Shield CSB Pin",
+          "weatherShieldEn": "Weather Shield EN Pin"
+        }
+      }
+    }
+  ],
+  "variants": [
+    {
+      "libName": "tsd305weathershield",
+      "shoppingCartLinks":{
+        "digikey":{
+          "links":{
+            "info":"https://www.digikey.com/short/pp4tz7"
+          },
+          
+          "cartData":{
+            "part":"223-1786-ND",
+            "partid":"6685752",
+            "source":"dkstudio",
+            "qty":"1"
+          }
+        }
+      },
+      "elements": [
+        {
+          "name": "TSD305WeatherShield",
+          "type": "EmbeddedTSD305WeatherShield",
+          "properties": [
+            {
+              "name": "weatherShield",
+              "value": true
+            }
+          ],
+          "language": {
+            "en-US": {
+              "EmbeddedTSD305WeatherShield": "TSD305 (Weather Shield)"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "libName": "tsd305piweathershield",
+      "shoppingCartLinks":{
+        "digikey":{
+          "links":{
+            "info":"https://www.digikey.com/short/pzmtdj"
+          },
+          
+          "cartData":{
+            "part":"223-1788-ND",
+            "partid":"6685754",
+            "source":"dkstudio",
+            "qty":"1"
+          }
+        }
+      },
+      "elements": [
+        {
+          "name": "TSD305PiWeatherShield",
+          "type": "EmbeddedTSD305PiWeatherShield",
+          "language": {
+            "en-US": {
+              "EmbeddedTSD305PiWeatherShield": "TSD305 (Pi Weather Shield)"
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
