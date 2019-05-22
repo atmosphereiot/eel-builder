@@ -221,7 +221,7 @@ typedef struct {
 
 bool ATMO_RelayClick_Init(ATMO_RelayClick_Config_t *config);
 bool ATMO_RelayClick_SetRelay1State(bool isOn);
-bool ATMO_Relayclick_ToggleRelay1();
+bool ATMO_RelayClick_ToggleRelay1();
 
 #endif
 ```
