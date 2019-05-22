@@ -298,7 +298,7 @@ bool ATMO_RelayClick_SetRelay1State(bool isOn)
     return (ATMO_GPIO_SetPinState(_ATMO_RelayClick_PrivConfig.gpioDriverInstance, _ATMO_RelayClick_PrivConfig.relay1Pin, desiredPinState) == ATMO_GPIO_Status_Success);
 }
 
-bool ATMO_Relayclick_ToggleRelay1()
+bool ATMO_RelayClick_ToggleRelay1()
 {
     return (ATMO_GPIO_Toggle(_ATMO_RelayClick_PrivConfig.gpioDriverInstance, _ATMO_RelayClick_PrivConfig.relay1Pin) == ATMO_GPIO_Status_Success);
 }
