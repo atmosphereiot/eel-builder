@@ -13,6 +13,8 @@ var args = minimist(process.argv.slice(2), {
     alias: {'h' :'help'},
 });
 
+var ALPHA_NUMERIC_REGEX = new RegExp("^[a-zA-Z0-9]*$");
+
 var VALID_INPUTS = ["driverInstance", "number", "text", "checkbox", "select"];
 var VALID_ICONS = ["EmbeddedAccelerometer.svg",
 	"EmbeddedAccelerometerMagnetometer.svg",
@@ -161,18 +163,70 @@ function checkForLanguageTag(elementdata, tag) {
 	return success;
 }
 
-function validate(metadata, isVariant) {
-	console.log(`Validating ${metadata.libName}`);
-	var alphaNumericRegex = new RegExp("^[a-zA-Z0-9]*$");
+function validateProperty(element, property, isVariant) {
 	var success = true;
 
-	if(!alphaNumericRegex.test(metadata.libName)) {
+	if(property.name == undefined) {
+		console.log(`ERROR: Property Name undefined`);
+		success = false;	
+	}
+
+	if(!isVariant) {
+		if(!checkForLanguageTag(element, property.name)) {
+			console.log(`ERROR: Language tag for property (${property.name}) missing`);
+			success = false;
+		}
+	}
+
+	if(!ALPHA_NUMERIC_REGEX.test(property.name)) {
+		console.log(`ERROR: Property Name (${property.name}) must contain only letters and numbers`);
+		success = false;
+	}
+	
+	if(property.input != undefined) {
+		if(!VALID_INPUTS.includes(property.input)) {
+			console.log(`ERROR: Property Input (${property.input}) invalid. Valid options: ${VALID_INPUTS}`);
+			success = false;
+		}
+	} else {
+		if(!isVariant) {
+			console.log(`ERROR: Property Input field missing for property ${property.name}`);
+			success = false;	
+		}
+	}
+
+	if(property.driverType) {
+		if(!VALID_DRIVERS.includes(property.driverType)) {
+			console.log(`ERROR: Driver Type (${property.driverType}) invalid. Valid options: ${VALID_DRIVERS}`);
+			success = false;
+		}
+	}
+
+	if(property.input == "select" && property.inputOptions == undefined) {
+		console.log(`ERROR: Property ${property.name} Missing Input Options for Input Type "select"`);
+		success = false;
+		
+	}
+
+	if(property.input == "driverInstance" && property.driverType == undefined) {
+		console.log(`ERROR: Property ${property.name} Missing Driver Type for Input Type "driverInstance"`);
+		success = false;
+	}
+
+	return success;
+}
+
+function validate(metadata, isVariant) {
+	console.log(`Validating ${metadata.libName}`);
+	var success = true;
+
+	if(!ALPHA_NUMERIC_REGEX.test(metadata.libName)) {
 		console.log(`ERROR: libName (${metadata.libName}) must contain only letters and numbers`);
 		success = false;
 	}
 
 	metadata.elements.forEach(function(element) {
-		if(!alphaNumericRegex.test(element.name)) {
+		if(!ALPHA_NUMERIC_REGEX.test(element.name)) {
 			console.log(`ERROR: Element Name (${element.name}) must contain only letters and numbers`);
 			success = false;
 		}
@@ -192,7 +246,7 @@ function validate(metadata, isVariant) {
 		}
 
 
-		if(!alphaNumericRegex.test(element.type)) {
+		if(!ALPHA_NUMERIC_REGEX.test(element.type)) {
 			console.log(`ERROR: Element Type (${element.type}) must contain only letters and numbers`);
 			success = false;
 		}
@@ -203,7 +257,7 @@ function validate(metadata, isVariant) {
 		}
 
 		if(element.defaultAbility != undefined) {
-			if(!alphaNumericRegex.test(element.defaultAbility)) {
+			if(!ALPHA_NUMERIC_REGEX.test(element.defaultAbility)) {
 				console.log(`ERROR: Element Default Ability (${element.defaultAbility}) must contain only letters and numbers`);
 				success = false;
 			}
@@ -216,7 +270,7 @@ function validate(metadata, isVariant) {
 
 
 		if(element.defaultTrigger != undefined) {
-			if(!alphaNumericRegex.test(element.defaultTrigger)) {
+			if(!ALPHA_NUMERIC_REGEX.test(element.defaultTrigger)) {
 				console.log(`ERROR: Element Default Trigger (${element.defaultTrigger}) must contain only letters and numbers`);
 				success = false;
 			}
@@ -229,7 +283,7 @@ function validate(metadata, isVariant) {
 
 		if(element.abilities != undefined) {
 			element.abilities.forEach(function(ability) {
-				if(!alphaNumericRegex.test(ability.name)) {
+				if(!ALPHA_NUMERIC_REGEX.test(ability.name)) {
 					console.log(`ERROR: Ability Name (${ability.name}) must contain only letters and numbers`);
 					success = false;
 				}
@@ -243,7 +297,7 @@ function validate(metadata, isVariant) {
 
 				if(ability.triggers) {
 					ability.triggers.forEach(function(trigger) {
-						if(!alphaNumericRegex.test(trigger)) {
+						if(!ALPHA_NUMERIC_REGEX.test(trigger)) {
 							console.log(`ERROR: Trigger (${trigger}) must contain only letters and numbers`);
 							success = false;
 						}
@@ -263,44 +317,20 @@ function validate(metadata, isVariant) {
 		}
 
 		if(element.properties != undefined) {
-			element.properties.forEach(function(property) {
-				if(!alphaNumericRegex.test(property.name)) {
-					console.log(`ERROR: Property Name (${property.name}) must contain only letters and numbers`);
-					success = false;
-				}
-				
-				if(property.input != undefined) {
-					if(!VALID_INPUTS.includes(property.input)) {
-						console.log(`ERROR: Property Input (${property.input}) invalid. Valid options: ${VALID_INPUTS}`);
+			if(element.properties.constructor === Array) {
+				element.properties.forEach(function(property) {
+					if(!validateProperty(element, property, isVariant)) {
 						success = false;
 					}
-				} else {
-					if(!isVariant) {
-						console.log(`ERROR: Property Input field missing for property ${property.name}`);
-						success = false;	
+				});
+			} else {
+				Object.keys(element.properties).forEach(function(propertyIndex) {
+					if(!validateProperty(element, element.properties[propertyIndex], isVariant)) {
+						success = false;
 					}
-				}
+				});
+			}
 
-				if(property.driverType) {
-					if(!VALID_DRIVERS.includes(property.driverType)) {
-						console.log(`ERROR: Driver Type (${property.driverType}) invalid. Valid options: ${VALID_DRIVERS}`);
-						success = false;
-					}
-				}
-	
-				if(property.input == "select" && property.inputOptions == undefined) {
-					console.log(`ERROR: Property ${property.name} Missing Input Options for Input Type "select"`);
-					success = false;
-					
-				}
-	
-				if(property.input == "driverInstance" && property.driverType == undefined) {
-					console.log(`ERROR: Property ${property.name} Missing Driver Type for Input Type "driverInstance"`);
-					success = false;
-				}
-	
-				
-			});
 		} else {
 			if(!isVariant) {
 				console.log(`ERROR: Element Properties field missing for element ${element.name}`);
@@ -371,7 +401,7 @@ function generate(eelDir, eelDest) {
 	if(args.force == false) {
 		if(!validate(metadata, false)) {
 			console.log("Failed to validate EEL metadata\n");
-			return 1;
+			process.exit(1);
 		}
 	}
 

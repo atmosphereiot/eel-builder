@@ -109,7 +109,7 @@ enum status_code
 	STATUS_ERR_TIMEOUT = 0x02,
 };
 
-static bool tsd305_coeff_read;
+static ATMO_BOOL_t tsd305_coeff_read;
 static struct
 {
 	uint16_t lot_number;
@@ -127,7 +127,7 @@ static struct
 static ATMO_DriverInstanceHandle_t _ATMO_TSD305_I2cInstance = 0;
 static ATMO_DriverInstanceHandle_t _ATMO_TSD305_GpioInstance = 0;
 
-static bool _ATMO_TSD305_WeatherShieldEnable = false;
+static ATMO_BOOL_t _ATMO_TSD305_WeatherShieldEnable = false;
 static ATMO_GPIO_Device_Pin_t _ATMO_TSD305_weatherShieldCsA = 0;
 static ATMO_GPIO_Device_Pin_t _ATMO_TSD305_weatherShieldCsB = 0;
 static ATMO_GPIO_Device_Pin_t _ATMO_TSD305_weatherShieldEn = 0;
@@ -142,7 +142,7 @@ static void tsd305_enableChipWeatherShield()
 	}
 }
 
-void tsd305_init(ATMO_DriverInstanceHandle_t i2cInstance, ATMO_DriverInstanceHandle_t gpioInstance, bool weatherShieldEnable, ATMO_GPIO_Device_Pin_t weatherShieldCsA, ATMO_GPIO_Device_Pin_t weatherShieldCsB, ATMO_GPIO_Device_Pin_t weatherShieldEn )
+void tsd305_init(ATMO_DriverInstanceHandle_t i2cInstance, ATMO_DriverInstanceHandle_t gpioInstance, ATMO_BOOL_t weatherShieldEnable, ATMO_GPIO_Device_Pin_t weatherShieldCsA, ATMO_GPIO_Device_Pin_t weatherShieldCsB, ATMO_GPIO_Device_Pin_t weatherShieldEn )
 {
 	_ATMO_TSD305_I2cInstance = i2cInstance;
 	tsd305_coeff_read = false;

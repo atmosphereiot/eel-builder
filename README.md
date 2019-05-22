@@ -166,6 +166,8 @@ A lit of variants of the EEL. These will be displayed in the Atmosphere Studio a
 
 When the EEL is imported, this object will be _overlayed_ on top of the base EEL. See [TSD305](examples/tsd305/metadata.json) for an example.
 
+Note that properties of variants are objects instead of arrays. The key of each variant's property must match its index (starting from 0) in the base element's property list.
+
 ### Element Fields
 These are fields that are specific to the given element object
 
