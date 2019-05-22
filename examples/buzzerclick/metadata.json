@@ -28,7 +28,7 @@
 		{
 			"name": "BuzzerClick",
 			"type": "EmbeddedBuzzerClick",
-			"icon": "EmbeddedBuzzer.svg",
+			"icon": "EmbeddedBeep.svg",
 			"defaultAbility":"turnOn",
 			"defaultTrigger":"turnedOn",
 			"helpPageHref": "https://developer.atmosphereiot.com/documents/elements/mikroelektronikabuzzerclickelement.html",

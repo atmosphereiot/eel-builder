@@ -70,12 +70,12 @@ Your properties list should look like this:
     "properties": [
     {
         "name": "gpioDriverInstance",
-        "type": "driverInstance",
+        "input": "driverInstance",
         "driverType": "gpio"
     },
     {
         "name": "relay1GpioPin",
-        "type": "number",
+        "input": "number",
         "value": 0
     }
     ],
@@ -140,12 +140,12 @@ Your final metadata.json file should look like this:
       "properties": [
         {
           "name": "gpioDriverInstance",
-          "type": "driverInstance",
+          "input": "driverInstance",
           "driverType": "gpio"
         },
         {
           "name": "relay1GpioPin",
-          "type": "number",
+          "input": "number",
           "value": 0
         }
       ],
@@ -195,7 +195,7 @@ Create a new structure to hold your configuration data (properties). You should 
 #ifndef ATMO_RELAYCLICK_H_
 #define ATMO_RELAYCLICK_H_
 
-#include "../atmo/core.h"
+#include "../app_src/atmosphere_platform.h"
 
 typedef struct {
     ATMO_DriverInstanceHandle_t gpioDriverInstance;
@@ -212,7 +212,7 @@ The next step is to create the function prototypes that we will need. You should
 #ifndef ATMO_RELAYCLICK_H_
 #define ATMO_RELAYCLICK_H_
 
-#include "../atmo/core.h"
+#include "../app_src/atmosphere_platform.h"
 
 typedef struct {
     ATMO_DriverInstanceHandle_t gpioDriverInstance;
@@ -236,7 +236,6 @@ The first step is to include the header: `#include "relayclick.h"`
 The next step is to implement the initialization function:
 ```c
 #include "relayclick.h"
-#include "../gpio/gpio.h"
 
 // Private internal storage of driver configuration
 static ATMO_RelayClick_Config_t _ATMO_RelayClick_PrivConfig;
@@ -249,7 +248,7 @@ bool ATMO_RelayClick_Init(ATMO_RelayClick_Config_t *config)
     // Set the default configuration and state of Relay1
     ATMO_GPIO_Config_t gpioConfig;
     gpioConfig.pinMode = ATMO_GPIO_PinMode_Output_PushPull;
-    gpioConfig.pinState = ATMO_GPIO_PinState_Low;
+    gpioConfig.initialState = ATMO_GPIO_PinState_Low;
 
     return ATMO_GPIO_SetPinConfiguration(config->gpioDriverInstance, config->relay1Pin, &gpioConfig) == ATMO_GPIO_Status_Success;
 }
@@ -275,7 +274,6 @@ bool ATMO_Relayclick_ToggleRelay1()
 In the end, you should end up with a final file looking like this:
 ```c
 #include "relayclick.h"
-#include "../gpio/gpio.h"
 
 // Private internal storage of driver configuration
 static ATMO_RelayClick_Config_t _ATMO_RelayClick_PrivConfig;
@@ -288,7 +286,7 @@ bool ATMO_RelayClick_Init(ATMO_RelayClick_Config_t *config)
     // Set the default configuration and state of Relay1
     ATMO_GPIO_Config_t gpioConfig;
     gpioConfig.pinMode = ATMO_GPIO_PinMode_Output_PushPull;
-    gpioConfig.pinState = ATMO_GPIO_PinState_Low;
+    gpioConfig.initialState = ATMO_GPIO_PinState_Low;
 
     return ATMO_GPIO_SetPinConfiguration(config->gpioDriverInstance, config->relay1Pin, &gpioConfig) == ATMO_GPIO_Status_Success;
 }

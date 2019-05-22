@@ -1,0 +1,2 @@
+tsd305_init(ATMO_PROPERTY(undefined, i2cInstance), ATMO_PROPERTY(undefined, gpioInstance), ATMO_PROPERTY(undefined, weatherShield), ATMO_PROPERTY(undefined, weatherShieldCsA), ATMO_PROPERTY(undefined, weatherShieldCsB), ATMO_PROPERTY(undefined, weatherShieldEn));
+return ATMO_Status_Success;
