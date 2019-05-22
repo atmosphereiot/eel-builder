@@ -21,7 +21,7 @@ enum tsd305_status
 };
 
 // Functions
-void tsd305_init( ATMO_DriverInstanceHandle_t i2cInstance, ATMO_DriverInstanceHandle_t gpioInstance, bool weatherShieldEnable, ATMO_GPIO_Device_Pin_t weatherShieldCsA, ATMO_GPIO_Device_Pin_t weatherShieldCsB, ATMO_GPIO_Device_Pin_t weatherShieldEn );
+void tsd305_init( ATMO_DriverInstanceHandle_t i2cInstance, ATMO_DriverInstanceHandle_t gpioInstance, ATMO_BOOL_t weatherShieldEnable, ATMO_GPIO_Device_Pin_t weatherShieldCsA, ATMO_GPIO_Device_Pin_t weatherShieldCsB, ATMO_GPIO_Device_Pin_t weatherShieldEn );
 
 /**
 * \brief Reads the temperature and pressure ADC value and compute the

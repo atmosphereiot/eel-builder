@@ -118,12 +118,12 @@
         {
           "name": "TSD305WeatherShield",
           "type": "EmbeddedTSD305WeatherShield",
-          "properties": [
-            {
+          "properties": {
+            "2" : {
               "name": "weatherShield",
               "value": true
             }
-          ],
+          },
           "language": {
             "en-US": {
               "EmbeddedTSD305WeatherShield": "TSD305 (Weather Shield)"
