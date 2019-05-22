@@ -44,7 +44,7 @@ In the Elements object, set the name to "RelayClick". This is the name that woul
 In the Elements object, set the element type to "EmbeddedRelayClick". This type is used for the language object and is generally how the Studio refers to this element.
 
 ### Step F: Icon
-For the icon, just use the generic `EmbeddedFunction.svg`.
+For the icon, just use the generic `EmbeddedRelay.svg`.
 
 ### Step G: Abilities
 Change `myability` to setup and add a field `hidden` set to true. Every element must have a setup ability, and it should be hidden. It should look like this:
