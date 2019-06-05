@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 const mkdirp = require("mkdirp");
 const minimist = require('minimist');
 const fs = require('fs');

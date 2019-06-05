@@ -1,4 +1,4 @@
-# EEL Utility
+# EEL Builder
 
 This is designed to be a simple command line utility to help developers generate EEL files.
 
