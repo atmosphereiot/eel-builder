@@ -1,17 +1,22 @@
 {
-  "name": "EELBuilder",
-  "version": "0.0.5",
-  "description": "Utility for generating and modifying EELs",
+  "name": "eel-builder",
+  "version": "1.0.0",
+  "description": "Utility for generating and modifying Atmosphere IoT Embedded Element Librarires (EELs)",
+  "license": "MIT",
   "author": "Atmosphere IoT Corp.",
+  "main": "eelbuilder.js",
   "url": "https://atmosphereiot.com",
-  "email": "email@atmosphereiot.com",
+  "repository": {
+    "type" : "git",
+    "url" : "https://github.com/atmosphereiot/eel-builder.git"
+  },
   "dependencies": {
     "eol": "^0.9.1",
     "minimist": "latest",
     "mkdirp": "latest",
     "walk-sync": "latest"
   },
-  "scripts": {
-    "start": "node eelbuilder.js"
+  "bin": {
+    "eelbuilder": "./eelbuilder.js"
   }
 }
