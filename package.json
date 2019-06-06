@@ -1,6 +1,6 @@
 {
   "name": "eel-builder",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Utility for generating and modifying Atmosphere IoT Embedded Element Librarires (EELs)",
   "license": "MIT",
   "author": "Atmosphere IoT Corp.",
