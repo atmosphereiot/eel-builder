@@ -283,7 +283,7 @@ function validate(metadata, isVariant) {
 			}
 		}
 
-		if(element.abilities != undefined) {
+		if(element.abilities != undefined && Array.isArray(element.abilities)) {
 			element.abilities.forEach(function(ability) {
 				if(!ALPHA_NUMERIC_REGEX.test(ability.name)) {
 					console.log(`ERROR: Ability Name (${ability.name}) must contain only letters and numbers`);
