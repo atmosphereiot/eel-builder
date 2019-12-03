@@ -117,7 +117,7 @@ function writeMetaData(dirName, eelName) {
 		description: "",
 		version: "",
 		eelVersion: "3",
-		shoppingCarLinks: {
+		shoppingCartLinks: {
 
 		},
 		requires: ["embedded"],
