@@ -193,7 +193,7 @@ The icon used. Must be one of the following:
 * `EmbeddedGyroscope.svg`
 * `EmbeddedHumidity.svg`
 * `EmbeddedLCDScreen.svg`
-* `EmbeddedLEDArray.svg`
+* `EmbeddedLedArray.svg`
 * `EmbeddedLoraWanConnection.svg`
 * `EmbeddedMagnetometer.svg`
 * `EmbeddedMotion.svg`
